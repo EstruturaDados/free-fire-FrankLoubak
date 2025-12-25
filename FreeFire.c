@@ -25,7 +25,8 @@
 };
 
 void limpaBufferEntrada();
-void insereItem(struct itens *inicio,
+void insereItem(
+                struct itens *cabeca,
                 const char *nome,
                 const char *tipo,
                 int quantidade,
@@ -107,14 +108,13 @@ void limpaBufferEntrada(){
     
 }
 
-void insereItem(struct itens *inicio,
+void insereItem(struct itens *cabeca,
                 const char *nome,
                 const char *tipo,
                 int quantidade,
                 int prioridade)
 {
     struct itens *novo = malloc(sizeof(struct itens));
-
     if (novo == NULL) {
         printf("Erro: falha ao alocar memória.\n");
         return;
@@ -124,10 +124,17 @@ void insereItem(struct itens *inicio,
     strcpy(novo->tipo, tipo);
     novo->quantidade = quantidade;
     novo->prioridade = prioridade;
+    novo->prox = NULL;
 
-    novo->prox = inicio->prox;
-    inicio->prox = novo;
+    struct itens *atual = cabeca;
+
+    while (atual->prox != NULL) {
+        atual = atual->prox;
+    }
+
+    atual->prox = novo;
 }
+
 
 
 // Struct Item:
