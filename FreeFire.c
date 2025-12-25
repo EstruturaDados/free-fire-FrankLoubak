@@ -3,10 +3,29 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+
+
 // Código da Ilha – Edição Free Fire
 // Nível: Mestre
 // Este programa simula o gerenciamento avançado de uma mochila com componentes coletados durante a fuga de uma ilha.
 // Ele introduz ordenação com critérios e busca binária para otimizar a gestão dos recursos.
+
+#define maxIten  10
+#define maxPrioridade 5
+#define maxString 15
+
+ struct itens
+{ 
+    char nome[maxString];
+    char tipo[maxString];
+    int quantidade;
+    int prioridade;
+    struct itens *prox;
+    
+};
+
+void limpaBufferEntrada();
+
 
 int main() {
     // Menu principal com opções:
@@ -17,10 +36,48 @@ int main() {
     // 5. Realizar busca binária por nome
     // 0. Sair
 
+    int cont = 0;
+    int opcao =-1;
+    struct itens cabeca;
+    cabeca.prox = NULL;
+
+    do{
+        printf("\n.........[  JOGO WAR  ].............\n\n");
+            printf("OPÇÃO - 1 : ADICIONAR UM ITEM NA LISTA\n");
+            printf("OPÇÃO - 2 : REMOVER UM ITEM\n");
+            printf("OPÇAO - 3 : LISTAR TODOS OS ITENS\n");
+            printf("OPÇÃO - 4 : ORDERNAR ITENS POR CRITERIO\n");
+            printf("OPÇÃO - 5 : REALIZAR BUSCA POR NOME\n");
+            printf("OPÇÃO - 0 : SAIR\n");
+            printf("==================================\n");
+            printf("ESCOLHA UMA OPÇÃO :  ");
+
+            scanf("%d", &opcao);
+            limpaBufferEntrada();
+            printf("opcao escolhida %d : ",opcao);
+    }while (opcao!=0);
+
+    printf("saindo do jogo\n");
+    printf("ponteiro cabeca.prox = %p\n", (void *)cabeca.prox);
+
+
+    
+    
+    
+
+
     // A estrutura switch trata cada opção chamando a função correspondente.
     // A ordenação e busca binária exigem que os dados estejam bem organizados.
+     printf("-------Lista de itens------\n");
+     printf("\nEscolha uma opção: \n1-inserir\n2-listar\n3-remover");
 
     return 0;
+}
+
+void limpaBufferEntrada(){
+    int c;
+    while ((c=getchar())!='\n' && c != EOF);   
+    
 }
 
 // Struct Item:
